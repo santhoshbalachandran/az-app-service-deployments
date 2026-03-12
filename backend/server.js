@@ -1,15 +1,18 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 
+// API route
 app.get("/api", (req, res) => {
   res.send("API working");
 });
 
-// app.use(express.static("../frontend"));
+// serve frontend only on root
+app.use("/", express.static(path.join(__dirname, "..", "frontend")));
 
-// static frontend
-app.use(express.static(path.join(__dirname, "..", "frontend")));
+const port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000
-
-app.listen(port, () => console.log("Server running"));
+app.listen(port, () => {
+  console.log("Server running on " + port);
+});
