@@ -5,7 +5,7 @@ const app = express();
 
 // API route
 app.get("/api", (req, res) => {
-  res.send("API working");
+  res.send(process.env.DB_NAME);
 });
 
 // serve frontend only on root
